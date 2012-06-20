@@ -120,7 +120,6 @@ WSGI_APPLICATION = 'latte.wsgi.application'
 
 TEMPLATE_DIRS = ( 
     os.path.join( os.path.dirname( __file__ ), 'templates' ),
-    os.path.join(os.path.dirname(__file__), 'admin_templates'),
  )
 
 INSTALLED_APPS = (
