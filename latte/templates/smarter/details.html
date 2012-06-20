@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+{% load i18n %}
+{% load bootstrap_toolkit %}
+{% load tags %}
+<div id="actions right">
+	<a class="btn btn-danger right remove" href="#"><i class="icon-trash icon-white"></i> {% trans "Delete" %}</a>
+	<a class="btn right" href="./edit/" style="margin-right:10px" ><i class="icon-pencil"></i> {% trans "Edit" %}</a>
+</div>
+<div id="object-details">
+{% for name, value in obj.get_fields %}
+	{% if value %}
+	<div style="padding:10px;text-align:right; width:100px;float:left;">
+		{{ name }}
+	</div>
+	<div style="padding:10px;width:500px;float:left;">
+		{{ value }}
+	</div>
+	<br style="clear:both"/>
+	{% endif %}
+{% endfor %}
+<br style="clear:both"/>
+</div>
+
+{% block extra %}
+{% endblock extra%}
+{% endblock content %}
+{% block script %}
+	$('.remove').click(function(){
+		$.ajax({
+			type : 'POST',
+			url  : './remove/',
+			data : 'pk={{obj.pk}}&csrfmiddlewaretoken={{csrf_token}}',
+			success: function(data)
+			{
+				$('body').load("{{ obj|index }}",function(){
+					window.history.pushState("object or string", "{{ obj|model }}s", "{{ obj|index }}");
+					$.sticky('Successfully deleted :)');
+				});
+			}
+		})
+	});
+{% endblock script%}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+{% load i18n %}
+{% load bootstrap_toolkit %}
+{% if objects_list %}
+<table class="table table-striped">
+<thead>
+	<tr>
+		<td width="50px">#</td>
+		<td>Summary</td>
+	</tr>
+</thead>
+{% for obj in objects_list %}
+<tr>
+	<td>{{ obj.id }}</td><td><a href="{{ obj.get_absolute_url }}">{{ obj }}</a></td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<div class="alert alert-info">
+  <strong>:(</strong> There is no data to display!
+</div>
+{% endif %}
+{% endblock %}

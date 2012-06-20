@@ -1,0 +1,32 @@
+{% extends 'accounts/base_accounts.html' %}
+{% load i18n %}
+{% load bootstrap_toolkit %}
+{% block title %}{% trans "Signin" %}{% endblock %}
+{% block styles %}
+<link href="{{ STATIC_URL }}css/login.css" rel="stylesheet"/>
+{% endblock styles%}
+{% block content %}
+<div class="holder">
+<div class="social">
+  <a href="{% url socialauth_begin 'facebook' %}"><img src="{{ STATIC_URL }}social/facebook.png"/></a>
+  <a href="{% url socialauth_begin 'github' %}"><img src="{{ STATIC_URL }}social/github.png"/></a>
+  <a href="{% url socialauth_begin 'twitter' %}"><img src="{{ STATIC_URL }}social/twitter.png"/></a>
+  <a href="{% url socialauth_begin 'google' %}"><img src="{{ STATIC_URL }}social/google.png"/></a>
+</div>
+<form action="" method="post">
+  {% csrf_token %}
+  {{ form|as_bootstrap }}
+  <a href='{% url accounts_password_reset %}' title="{% trans "Forgot your password?" %}">{% trans "Forgot your password?" %}</a>
+  <input type="submit" class="btn" value="{% trans "Signup"%}" />
+  {% if next %}
+  <input type="hidden" name="next" value="{{ next }}" />
+  {% endif %}
+</form>
+</div>
+{% endblock %}
+{%block script%}
+$('input').each(function(){
+  $(this).attr('placeholder',$('[for='+$(this).attr('id')+']').text());
+  $('[for="'+$(this).attr('id')+'"]').remove();
+});
+{%endblock%}

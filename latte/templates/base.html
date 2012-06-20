@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{% block title%}{% endblock %}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
+<link href="{{ STATIC_URL }}css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="{{ STATIC_URL }}css/select2.css" rel="stylesheet"/>
+<link href="{{ STATIC_URL }}css/datepicker.css" rel="stylesheet"/>
+<link href="{{ STATIC_URL }}css/timepicker.css" rel="stylesheet"/>
+<link href="{{ STATIC_URL }}css/sticky.min.css" rel="stylesheet"/>
+<link href="{{ STATIC_URL }}css/extra.css" rel="stylesheet"/>
+{% block styles %}
+{% endblock styles %}
+{% load i18n %}
+{% load tags %}
+{% load sitetree %} 
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+</head>
+<body>
+<!-- Navigation [start] -->
+{% draw_nav %}
+<!-- Navigation [end] -->
+
+<!-- Container [start] -->
+<div id="inner-content-div">
+    <div class="container-fluid">
+
+    <!-- Custom Content [start] -->
+    {% block meta %}{% endblock %}
+    {% block body %}
+        {% block content_title %}{% endblock %}
+        {% block content %}
+            <div class="intro"></div>
+        {% endblock content %}
+    {% endblock body %}
+    <!-- Custom Content [end] -->
+
+    </div>
+</div>
+<!-- Container [end] -->
+
+<!-- Footer [start] -->
+<footer>Keep on rockin \m/</footer>
+<!-- Footer [end] -->
+
+<script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+<script src="{{ STATIC_URL }}js/jquery-ui.min.js"></script>
+<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+<script src="{{ STATIC_URL }}js/bootstrap-datepicker.js"></script>
+<script src="{{ STATIC_URL }}js/bootstrap-timepicker.js"></script>
+<script src="{{ STATIC_URL }}js/select2.js"></script>
+<script src="{{ STATIC_URL }}js/sticky.min.js"></script>
+<script src="{{ STATIC_URL }}js/scroll.js"></script>
+
+{% block scripts %}
+{% endblock scripts %}
+
+<script>
+    $.ajaxPrefilter(function(options, originalOptions, jqXHR){
+        if(options.type == "GET")
+            return;
+        if(!options.crossDomain) {
+            if(options.data)
+                options.data += "&";
+            else 
+                options.data = "";
+            options.data += "csrfmiddlewaretoken={{csrf_token}}";
+        }
+    });
+    $(function(){
+        $('#inner-content-div').hide()
+        height = $('body').height()+'px';
+        $('#inner-content-div').show()
+        $('#inner-content-div').slimScroll({
+            height: height,
+            railVisible: false,
+            alwaysVisible: true,
+            distance:5,
+            allowPageScroll: false,
+        });
+
+        $(window).resize(function() {
+            $('#inner-content-div').hide();
+            height = $('body').height()+'px';
+            var me = $('#inner-content-div')
+            $('.slimScrollDiv,#inner-content-div').css("height",height);
+            $('#inner-content-div').show()
+            var height1 = Math.max((me.outerHeight() / me[0].scrollHeight) * me.outerHeight(), 30)+ 'px' ;
+            $(".slimScrollBar").css({ height: height1 });
+            if(height1 == height)
+                $(".slimScrollBar").fadeOut(300)
+            else
+                $(".slimScrollBar").fadeIn(300)
+        });
+
+        $('input[name*="date"],[name="time_stamp"]').each(function (){
+            $(this).hide();
+            var value = $(this).val().split(" ");
+            if (value[0].trim() == "") 
+            value[0] = (new Date()).getUTCFullYear() 
+                   + "-" + ((new Date()).getUTCMonth() + 1) 
+                   + "-" + (new Date()).getUTCDate()  
+            var el = $('<div class="input-prepend input-append date" data-date="12-02-2012"></div>');
+            el.append('<span class="add-on"><i class="icon-calendar"></i></span>');
+            el.append('<input type="text" class="dateThing" value="' + value[0] + '"/>');
+            el.append('<span class="add-on"><i class="icon-time"></i></span>');
+            var r = value[0].split(":");
+            var type = "AM"
+            if (r[0] > '12') {
+                r[0] = parseInt(r[0]) - 12;
+                type = "PM";
+            }
+            el.append('<input type="text" value="' + r[0] + ":" + r[1] + type + '"class="timeThing"/>');
+            $(this).after(el)
+        });
+
+        $('.dateThing').datepicker({
+            format: 'yyyy-mm-dd'
+        }).on('changeDate', function (ev) {
+            $('.timeThing').change();
+        });
+
+        $('.timeThing').timepicker();
+        $('.timeThing').live('change', function () {
+            var value = $(this).val();
+            var data = value.split(" ");
+            var r = data[0].split(":");
+            if (data[1] == "PM" && r[0] != '12') 
+                r[0] = parseInt(r[0]) + 12;
+            $(this).parent().prev().val($(this).prev().prev().val() + " " + r[0] + ":" + r[1] + ":00");
+        });;
+
+        $('select').select2();
+        
+        $('.timeThing').change();
+
+        $("[name=tags]").select2({
+            tags: [{% all_tags %}]
+        });
+
+        $('.modal').modal({'show':false})
+
+        {% block script%}
+        {% endblock script%}
+
+        {% if messages %}
+            {% for message in messages %}
+                $.sticky("{{ message }}")
+            {% endfor %}
+        {% endif %}
+
+        $("#top").prepend("<div id='magic-line'></div>");
+        $("#magic-line").width($("li.active").outerWidth())
+                        .css("left", $("li.active").position().left)
+                        .data("origLeft", $("li.active").position().left)
+                        .data("origWidth", $("li.active").outerWidth());
+
+        $("#top>div>ul>li:not('.home')").live({
+            mouseenter: function () {
+                leftPos = $(this).position().left;
+                newWidth = $(this).outerWidth();
+                $("#magic-line").stop().animate({
+                    left: leftPos,
+                    width: newWidth
+            });
+          },
+          mouseleave: function () {
+                $("#magic-line").stop().animate({
+                    left: $("#magic-line").data("origLeft"),
+                    width: $("#magic-line").data("origWidth")
+                });
+          },
+          click: function () {
+                if ($(this).attr('id') == 'new_iteration') 
+                    return;
+                $('.active').removeClass('active');
+                $(this).addClass('active');
+                $("#magic-line").width($(this).outerWidth()).css("left", $(this).position().left)
+                                .data("origLeft", $(this).position().left)
+                                .data("origWidth", $(this).outerWidth());
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% extends 'umessages/base_message.html' %}
+{% load i18n umessages_tags %}
+
+{% block content %}
+<div style="margin-bottom:50px">
+  <div class="left">
+    <h2>{% trans "Messages" %} <span class="badge badge-info">{% get_unread_message_count_for user as unread_message_count %}
+{% blocktrans %}{{ unread_message_count }}{% endblocktrans %}</span></h2>
+  </div>
+  <div class="right">
+    <a class="btn btn-primary"href="{% url accounts_umessages_compose %}">
+      <i class="icon-pencil icon-white"></i>
+      {% trans "Compose" %}
+    </a>
+  </div>
+</div>
+<table class="table table-striped">
+  {% for message in message_list %}
+  <tr>
+    <td>
+      {% if message.from_user == user %}
+      <a href="{% url accounts_umessages_detail message.to_user.username %}">{{ message.to_user }}</a>
+      {% get_unread_message_count_between user and message.to_user as unread_between_count %}
+      {% else %}
+      <a href="{% url accounts_umessages_detail message.from_user.username %}">{{ message.from_user }}</a>
+      {% get_unread_message_count_between user and message.from_user as unread_between_count %}
+      {% endif %}
+    </td>
+    <td>
+      {% blocktrans with message.latest_message as latest_message %}
+        {{ latest_message }}
+      {% endblocktrans %}
+    </td>
+    <td>
+    {% blocktrans with message.latest_message as latest_message %}({{ unread_between_count }} new){% endblocktrans %}
+  </td>
+  <tr>
+  {% endfor %}
+</table>
+{% endblock %}

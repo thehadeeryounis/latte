@@ -1,0 +1,20 @@
+{% load i18n %}
+{% load tags %}
+{% load sitetree %} 
+<div id="top" class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+    	<ul class="nav nav-pills">
+    		<li class="home"><a href="/"></a></li>
+    		<li class="divider-vertical"></li>
+    	</ul>
+        {% sitetree_menu from "maintree" include "trunk,topmenu" %}
+
+        {% draw_lang %}
+
+        {% if user.is_authenticated %}
+            {% sitetree_menu from "user" include "trunk,topmenu" %}   
+        {% else %}      
+            {% sitetree_menu from "anon" include "trunk,topmenu" %}  
+        {% endif %}
+    </div>
+</div>

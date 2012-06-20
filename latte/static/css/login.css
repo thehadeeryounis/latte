@@ -1,0 +1,39 @@
+.social {
+  margin-right:20px;
+  padding-right:20px; 
+  border-right:1px solid #ccc;
+}
+
+.social a {
+  display:block;
+  margin:15px 0;
+}
+
+form {
+  width:309px;
+}
+
+.container-fluid,.holder {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  display: box;
+  box-orient: horizontal;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -moz-box-align: center;
+  -moz-box-pack: center;
+  box-align: center;
+  box-pack: center;
+}
+.container-fluid
+{
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+  height:100%;
+}

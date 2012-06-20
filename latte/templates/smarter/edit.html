@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+{% load i18n %}
+{% load bootstrap_toolkit %}
+{% load tags %}
+<div id="actions right">
+	<a class="btn right btn-danger remove" href="#"><i class="icon-trash icon-white"></i> {% trans "Delete" %}</a>
+</div>
+<form method="POST" class="well" action="" {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">{% trans "Update" %}</button>
+        <a href="../." class="btn">{% trans "Cancel" %}</a>
+    </div>
+</form>
+{% endblock %}
+{% block script %}
+	$('.remove').click(function(){
+		$.ajax({
+			type : 'POST',
+			url  : './../remove/',
+			data : 'pk={{obj.pk}}&csrfmiddlewaretoken={{csrf_token}}',
+			success: function(data)
+			{
+				$('body').load("./../../",function(){
+					window.history.pushState("object or string", "{{ obj|model }}s", "./../../");
+					$.sticky('Successfully deleted :)');
+				});
+			}
+		})
+	});
+{% endblock script%}

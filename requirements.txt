@@ -1,9 +1,3 @@
-About
-=====
-TBA
-
-Requirements
-=====
 Django==1.4
 django-bootstrap-toolkit==2.5.3
 django-guardian==1.0.4

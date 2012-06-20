@@ -1,0 +1,19 @@
+.animate
+{
+        transition: transform 0.5s;
+        -moz-transition: -moz-transform 0.5s;
+        -webkit-transition: -webkit-transform 0.5s;
+        -o-transition: -o-transform 1s;
+}
+.animate2
+{
+        transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        -o-transition: all 0.5s;
+}
+
+.ui-multi-dragging
+{
+        position: relative !important;
+}

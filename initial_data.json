@@ -1,0 +1,131 @@
+[
+    {
+        "pk": 2, 
+        "model": "sitetree.tree", 
+        "fields": {
+            "alias": "anon"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "sitetree.tree", 
+        "fields": {
+            "alias": "user"
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "sitetree.treeitem", 
+        "fields": {
+            "parent": null, 
+            "access_restricted": false, 
+            "access_permissions": [], 
+            "description": "", 
+            "insitetree": true, 
+            "hint": "", 
+            "url": "accounts_register", 
+            "inbreadcrumbs": true, 
+            "title": "Register", 
+            "tree": 2, 
+            "access_perm_type": 1, 
+            "alias": null, 
+            "sort_order": 11, 
+            "inmenu": true, 
+            "access_loggedin": false, 
+            "hidden": false, 
+            "urlaspattern": true
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "sitetree.treeitem", 
+        "fields": {
+            "parent": null, 
+            "access_restricted": false, 
+            "access_permissions": [], 
+            "description": "", 
+            "insitetree": true, 
+            "hint": "", 
+            "url": "accounts_login", 
+            "inbreadcrumbs": true, 
+            "title": "Login", 
+            "tree": 2, 
+            "access_perm_type": 1, 
+            "alias": null, 
+            "sort_order": 12, 
+            "inmenu": true, 
+            "access_loggedin": false, 
+            "hidden": false, 
+            "urlaspattern": true
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "sitetree.treeitem", 
+        "fields": {
+            "parent": null, 
+            "access_restricted": false, 
+            "access_permissions": [], 
+            "description": "", 
+            "insitetree": true, 
+            "hint": "", 
+            "url": "accounts_logout", 
+            "inbreadcrumbs": true, 
+            "title": "Logout", 
+            "tree": 3, 
+            "access_perm_type": 1, 
+            "alias": null, 
+            "sort_order": 13, 
+            "inmenu": true, 
+            "access_loggedin": true, 
+            "hidden": false, 
+            "urlaspattern": true
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "sitetree.treeitem", 
+        "fields": {
+            "parent": null, 
+            "access_restricted": false, 
+            "access_permissions": [], 
+            "description": "", 
+            "insitetree": true, 
+            "hint": "", 
+            "url": "accounts_umessages_list", 
+            "inbreadcrumbs": true, 
+            "title": "Messages", 
+            "tree": 3, 
+            "access_perm_type": 1, 
+            "alias": null, 
+            "sort_order": 15, 
+            "inmenu": true, 
+            "access_loggedin": true, 
+            "hidden": false, 
+            "urlaspattern": true
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "sitetree.treeitem", 
+        "fields": {
+            "parent": null, 
+            "access_restricted": false, 
+            "access_permissions": [], 
+            "description": "", 
+            "insitetree": true, 
+            "hint": "", 
+            "url": "accounts_profile_detail user.username", 
+            "inbreadcrumbs": true, 
+            "title": "Profile", 
+            "tree": 3, 
+            "access_perm_type": 1, 
+            "alias": null, 
+            "sort_order": 16, 
+            "inmenu": true, 
+            "access_loggedin": true, 
+            "hidden": false, 
+            "urlaspattern": true
+        }
+    }
+]

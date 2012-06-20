@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+{% load i18n %}
+{% load bootstrap_toolkit %}
+<form method="POST" class="well" action="" {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">{% trans "Create" %}</button>
+        <a href="../." class="btn">{% trans "Cancel" %}</a>
+    </div>
+</form>
+{% endblock %}

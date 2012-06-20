@@ -1,0 +1,12 @@
+{% load i18n %}
+<form class="navbar-form pull-right" action="/i18n/setlang/" method="post">
+    {% csrf_token %}
+    <input name="next" type="hidden" value="{{ request.path }}" />
+    <select name="language" onchange="$('#locale_switcher').submit()">
+        {% for lang in LANGUAGES %}
+            <option value="{{ lang.0 }}" {% if request.LANGUAGE_CODE == lang.0 %}selected{% endif %}>
+                {{ lang.1 }}
+            </option>
+        {% endfor %}
+    </select>
+</form>
