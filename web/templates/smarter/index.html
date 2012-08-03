@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block scripts %}
+{% endblock %}
+{% block content %}
+{% load i18n %}
+{% load bootstrap_toolkit %}
+{% if objects_list %}
+<table class="table table-striped">
+<thead>
+	<tr>
+		<td width="50px">#</td>
+		<td>Summary</td>
+	</tr>
+</thead>
+{{ template }}
+{% include 'smarter/index_page.html'%}
+</table>
+{% else %}
+<div class="alert alert-info">
+  <strong>:(</strong> There is no data to display!
+</div>
+{% endif %}
+{% endblock %}

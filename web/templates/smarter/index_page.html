@@ -1,0 +1,8 @@
+{% load endless %}
+{% paginate objects_list %}
+{% for obj in objects_list %}
+<tr>
+	<td>{{ obj.id }}</td><td><a href="{{ obj.get_absolute_url }}">{{ obj }}</a></td>
+</tr>
+{% endfor %}
+<tr><td colspan="2" style="text-align:center">{% show_more %}</td></tr>

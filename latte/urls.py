@@ -6,7 +6,7 @@ from web.views import *
 
 admin.autodiscover()
 site = SmarterSite()
-site.register(MyCustomModel)
+site.register(Item)
 
 urlpatterns = patterns('',
     url(r'^', include(site.urls)),
@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     url(r'^welcome/$', 'web.views.welcome', name="welcome"),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('social_auth.urls')),
-    url(r'^messages/', include('accounts.contrib.umessages.urls')),
-    url(r'^accounts/', include('accounts.urls')),
+    url(r'^accounts/', include('userprofiles.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r'^activity/', include('actstream.urls'))
  )
