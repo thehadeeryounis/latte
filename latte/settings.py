@@ -100,10 +100,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
     "django.core.context_processors.request",
-    'social_auth.context_processors.social_auth_by_name_backends',
-    'social_auth.context_processors.social_auth_backends',
-    'social_auth.context_processors.social_auth_by_type_backends',
-    'social_auth.context_processors.social_auth_login_redirect',
+#    "postman.context_processors.inbox",
 )
 
 MIDDLEWARE_CLASSES = (
@@ -124,9 +121,13 @@ WSGI_APPLICATION = 'latte.wsgi.application'
 TEMPLATE_DIRS = ( 
 )
 
-ACTSTREAM_ACTION_MODELS = ['auth.User', 'web.Item']
-
-ACTSTREAM_MANAGER = 'actstream.managers.ActionManager'
+ACTSTREAM_SETTINGS = {
+    'MODELS': ('auth.user', 'auth.group', 'sites.site', 'comments.comment',  'web.item'),
+    'MANAGER': 'actstream.managers.ActionManager',
+    'FETCH_RELATIONS': True,
+    'USE_PREFETCH': True,
+    'GFK_FETCH_DEPTH': 1,
+}
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -149,7 +150,9 @@ INSTALLED_APPS = (
     'userprofiles.contrib.profiles',
     'social_auth',
     'actstream',
-    'endless_pagination'
+    'endless_pagination',
+#    'postman',
+    'django_messages'    
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -174,6 +177,9 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+ANONYMOUS_USER_ID = -1
+accounts_ACTIVATION_DAYS = 7
+
 # Social Auth Settings
 #LOGOUT_URL         = '/users/logout/'
 #LOGIN_URL          = '/users/login/'
@@ -181,16 +187,14 @@ AUTHENTICATION_BACKENDS = (
 #LOGIN_REDIRECT_URL = '/users/%(username)s/'
 #LOGIN_ERROR_URL    = '/users/login/error/'
 
-SOCIAL_AUTH_PROTECTED_USER_FIELDS = ['email', 'username']
-SOCIAL_AUTH_SESSION_EXPIRATION = False
-SOCIAL_AUTH_USER_MODEL = 'auth.User'
 SOCIAL_AUTH_ASSOCIATE_BY_MAIL = True
-SOCIAL_AUTH_RAISE_EXCEPTIONS = DEBUG
 
 SOCIAL_AUTH_NEW_USER_REDIRECT_URL        = '/welcome/'
 SOCIAL_AUTH_NEW_ASSOCIATION_REDIRECT_URL = '/welcome/'
 SOCIAL_AUTH_DISCONNECT_REDIRECT_URL      = '/welcome/'
 
+SOCIAL_AUTH_EXTRA_DATA         = False
+SOCIAL_AUTH_SESSION_EXPIRATION = False
 
 TWITTER_CONSUMER_KEY         = 'ptPKKkaOWdAJ3Qbx0vHDA'
 TWITTER_CONSUMER_SECRET      = 'TQ81NOssh1pXOH13TSv0bHNXRqZHEjllIuqJbXL2bw'
@@ -220,11 +224,11 @@ BITBUCKET_CONSUMER_KEY       = ''
 BITBUCKET_CONSUMER_SECRET    = ''
 
 # Accounts Configuration
-#USERPROFILES_CHECK_UNIQUE_EMAIL = True
-#USERPROFILES_USE_ACCOUNT_VERIFICATION = True
-#USERPROFILES_ACCOUNT_VERIFICATION_DAYS = 14
-#USERPROFILES_INLINE_PROFILE_ADMIN = True
-#USERPROFILES_REGISTRATION_FORM = 'web.forms.ProfileRegistrationForm'
+USERPROFILES_CHECK_UNIQUE_EMAIL = True
+USERPROFILES_USE_ACCOUNT_VERIFICATION = True
+USERPROFILES_ACCOUNT_VERIFICATION_DAYS = 14
+USERPROFILES_INLINE_PROFILE_ADMIN = True
+USERPROFILES_REGISTRATION_FORM = 'web.forms.ProfileRegistrationForm'
 USERPROFILES_USE_PROFILE = True
 AUTH_PROFILE_MODULE = 'web.profile'
 
@@ -232,9 +236,13 @@ AUTH_PROFILE_MODULE = 'web.profile'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'latte@gmail.com'
-EMAIL_HOST_PASSWORD = 'XXXXXX'
+EMAIL_HOST_USER = 'XXXXX@gmail.com'
+EMAIL_HOST_PASSWORD = 'XXXXXXX'
 EMAIL_PORT = 587
+
+# Postman Configuration
+POSTMAN_DISALLOW_ANONYMOUS = True
+POSTMAN_AUTO_MODERATE_AS = True
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

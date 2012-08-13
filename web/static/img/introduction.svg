@@ -179,6 +179,21 @@
          in2="fbSourceGraphic"
          id="feComposite3132" />
     </filter>
+    <style type="text/css">
+     <![CDATA[
+      @font-face {
+          font-weight: normal;
+          font-style: normal;
+          font-family: 'MarydaleRegular';
+          src: url('../css/fonts/marydale/marydale.eot');
+          src: url('../css/fonts/marydale/marydale.eot?#iefix') format('embedded-opentype'),
+               url('../css/fonts/marydale/marydale.woff') format('woff'),
+               url('../css/fonts/marydale/marydale.ttf') format('truetype'),
+               url('../css/fonts/marydale/marydale.svg#MarydaleRegular') format('svg');
+
+      }
+     ]]>
+   </style>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -228,7 +243,7 @@
        inkscape:export-ydpi="90" />
     <text
        xml:space="preserve"
-       style="font-size:56.81460953px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Marydale;-inkscape-font-specification:Marydale Bold"
+       style="font-size:56.81460953px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:MarydaleRegular;-inkscape-font-specification:MarydaleRegular Bold"
        x="205.78934"
        y="322.51291"
        id="text2985"
@@ -237,7 +252,7 @@
          id="tspan2987"
          x="205.78934"
          y="322.51291"
-         style="font-weight:normal;-inkscape-font-specification:Marydale">Latte!</tspan></text>
+         style="font-weight:normal;-inkscape-font-specification:MarydaleRegular">Latte!</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:35.50912857px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -251,7 +266,7 @@
          y="606.78516" /></text>
     <text
        xml:space="preserve"
-       style="font-size:35.50912857px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Marydale;-inkscape-font-specification:Marydale Bold"
+       style="font-size:35.50912857px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:MarydaleRegular;-inkscape-font-specification:MarydaleRegular Bold"
        x="217.651"
        y="405.23749"
        id="text2985-7"
@@ -271,17 +286,17 @@
          id="tspan2987-5"
          x="219.76535"
          y="361.97629"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Marydale;-inkscape-font-specification:Marydale">Just a simple django base </tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:MarydaleRegular;-inkscape-font-specification:MarydaleRegular">Just a simple django base </tspan><tspan
          sodipodi:role="line"
          x="219.76535"
          y="406.3627"
          id="tspan3178"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Marydale;-inkscape-font-specification:Marydale"> project. So you don't have</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:MarydaleRegular;-inkscape-font-specification:MarydaleRegular"> project. So you don't have</tspan><tspan
          sodipodi:role="line"
          x="219.76535"
          y="450.74911"
          id="tspan3184"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Marydale;-inkscape-font-specification:Marydale">to do the silly things :)</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:MarydaleRegular;-inkscape-font-specification:MarydaleRegular">to do the silly things :)</tspan></text>
     <g
        transform="matrix(3.7915448,0,0,3.7915448,-211.58158,-1299.103)"
        id="layer1-6"

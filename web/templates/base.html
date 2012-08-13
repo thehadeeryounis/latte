@@ -28,7 +28,8 @@
 <!-- Navigation [start] -->
 {% draw_nav %}
 <!-- Navigation [end] -->
-
+{% block secondnav %}
+{% endblock %}
 <!-- Container [start] -->
 <div id="inner-content-div">
     <div class="container-fluid">
@@ -38,7 +39,9 @@
     {% block body %}
         {% block content_title %}{% endblock %}
         {% block content %}
-            <div class="intro"></div>
+            <div class="intro">
+                {% include "helpers/introduction.svg" %}
+            </div>
         {% endblock content %}
     {% endblock body %}
     <!-- Custom Content [end] -->

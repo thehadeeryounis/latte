@@ -13,3 +13,7 @@ def home(request):
 def welcome(request):
     follow(request.user, User.objects.get(username='admin'), actor_only=False)
     return render_to_response( "base.html", context_instance = RequestContext( request ), mimetype = "text/html" )
+
+def profile(request, username):
+	user = User.objects.get(username = username)
+	return render_to_response( "userprofiles/public_profile.html", { 'user': user },context_instance = RequestContext( request ), mimetype = "text/html" )

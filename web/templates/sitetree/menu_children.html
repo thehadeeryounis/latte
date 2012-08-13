@@ -1,7 +1,12 @@
 {% load sitetree %}
 <ul class="dropdown-menu">
+	<li>LOL</li>
+	{{sitetree_items}}
+	{{ item.children }}
 	{% for item in sitetree_items %}
+	HELLO
 	<li {% if item.is_current or item.in_current_branch %}class="active"{% endif %}>
+		LOL
         <a href="{% sitetree_url for item %}" {% if item.hint %}title="{{ item.hint }}"{% endif %}>{{ item.title_resolved }}</a>
 		{% if item.has_children %}
 			{% sitetree_children of item for menu template "sitetree/menu_children.html" %}

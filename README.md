@@ -4,4 +4,4 @@ TBA
 
 Requirements
 =====
-See requirements.txt
+To install requirements please run `sudo pip install -r requirments.txt`

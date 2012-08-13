@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block scripts %}
+<script>
+$(function () {
+    $("#follow_button, #unfollow_button").click(function () {
+        $.post($(this).attr("href"), {});
+        $(this).parent().find("#follow_button, #unfollow_button").toggle();
+        return false
+    });
+    $.ajax({
+    	url: "/activity/actors/3/{{ user.id }}/",
+    	success: function(html){
+    		$("#actions").append(html)
+    	}
+    })
+});
+</script>
+{% endblock %}
+{% block title %}{% trans "Your profile" %}{% endblock %}
+
+{% block content %}
+	{% blocktrans %}This is {{ user }}'s profile {% endblocktrans %}
+
+	{% ifequal request.user actor %}{% else %}
+    <hr/>
+    <li>
+        <a href="{% url actstream_unfollow content_type_id=3  object_id=user.pk %}" id="unfollow_button" style="display:none">{% trans "UNFOLLOW" %}</a>
+        <a href="{% url actstream_follow content_type_id=3  object_id=user.pk %}" id="follow_button" >{% trans "FOLLOW" %}</a>
+    </li>
+{% endifequal %}
+<hr/>
+<div id="actions">
+</div>
+{% endblock %}

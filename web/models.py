@@ -4,7 +4,6 @@ from datetime import datetime
 from taggit.managers import TaggableManager
 from django.core.urlresolvers import reverse
 from django.views.generic.list import ListView
-from infinite_pagination.paginator import InfinitePaginator
 
 class Profile(models.Model):
     user = models.OneToOneField(User)
@@ -35,7 +34,3 @@ class LatteModel(models.Model):
 class Item(LatteModel):
     name = models.CharField(max_length=50, null = False, blank = False)
 
-#class ItemListView(ListView):
-#    model = Item
-#    paginate_by = 3
-#    paginator_class = InfinitePaginator
